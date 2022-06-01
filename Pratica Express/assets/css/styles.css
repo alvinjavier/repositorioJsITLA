@@ -1,0 +1,51 @@
+/* Incluir fuentes externas */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+/* Selector de tag/elemento */
+p {
+    color: red;
+}
+
+/* Selector de identificador */
+#titulo {
+    color: #355070;
+    font-family: 'Roboto';
+}
+
+/* Selector de clase */
+.negrita {
+    font-weight: bold;
+}
+
+
+/* Selector de atributo */
+input[type="text"] {
+    color: red;
+    font-weight: bold;
+    font-family: 'Roboto';
+}
+
+/* Selector de pseudo clase*/
+button:hover {
+    font-family: 'Roboto';
+    font-weight: 300;
+    
+    background-color: #E56B6F;
+    font-size: 16px;
+
+    border-width: 3px;
+    border-style: solid;
+    border-color: #F0A8AB;
+    border-radius: 5px;
+}
+
+
+/* Selector de atributo combinado */
+input[type="text"],
+textarea {
+    color: red;
+    font-weight: bold;
+    font-family: 'Roboto';
+}

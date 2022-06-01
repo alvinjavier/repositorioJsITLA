@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script defer src="js/sesion.js"></script>
+    <script defer src="js/interacciones.js"></script>
+
+    <title>Clientes | CRM</title>
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+      <div class="container">
+        <a href="/" class="navbar-brand">CRM</a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="/clientes" class="nav-link">Clientes</a>
+            </li>
+            <li class="nav-item">
+              <a href="/usuarios" class="nav-link">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a href="/interacciones" class="nav-link">Interacciones</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="form-edit">
+      <div class="card-body">
+        <h1 class="card-title text-center mb-3 text-light">
+          Editar Interacción
+        </h1>
+        <div
+          class="card text-white bg-dark mb-3 p-4"
+          style="max-width: 25rem; margin: auto"
+        >
+          <form
+            class="form__edit-interaction"
+            action="/interaction"
+            method="POST"
+          >
+            <div class="mb-3" style="display: none">
+              <input
+                type="text"
+                class="form-control"
+                id="interactionIdEdit"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="noteEdit" class="form-label">Nota</label>
+              <textarea
+                class="form-control"
+                id="noteEdit"
+                rows="4"
+                cols="50"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="customerIdEdit" class="form-label">Customer ID</label>
+              <input
+                type="number"
+                class="form-control"
+                id="customerIdEdit"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="costumerNameEdit" class="form-label"
+                >Customer Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="costumerNameEdit"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="costumerEmailEdit" class="form-label"
+                >Customer Email</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="costumerEmailEdit"
+                required
+              />
+            </div>
+
+            <div class="mb-3" style="display: none">
+              <input
+                type="dateEdit"
+                class="form-control"
+                id="interactionDateEdit"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Editar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-create">
+      <div class="card-body">
+        <h2 class="card-title text-center mb-3 text-light">
+          Nueva Interacción
+        </h2>
+        <div
+          class="card text-white bg-dark mb-3 p-4"
+          style="max-width: 25rem; margin: auto"
+        >
+          <form
+            class="form__create-interaction"
+            action="/interaction"
+            method="POST"
+          >
+            <div class="mb-3">
+              <label for="note" class="form-label">Nota</label>
+              <textarea
+                class="form-control"
+                id="note"
+                rows="4"
+                cols="50"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="customerId" class="form-label">Customer ID</label>
+              <input
+                type="number"
+                class="form-control"
+                id="customerId"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="costumerName" class="form-label">Customer Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="costumerName"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="costumerEmail" class="form-label"
+                >Customer Email</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="costumerEmail"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Crear</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Diferentes Opciones -->
+    <section class="container-lg p-4">
+      <h2>Interacción</h2>
+      <table class="table table-dark table-hover p-3">
+        <thead>
+          <tr>
+            <!-- style="width: 710px" -->
+            <th scope="col">Id</th>
+            <th scope="col">node</th>
+            <th scope="col">*createdAt*</th>
+            <th scope="col">user</th>
+            <th scope="col">costumer</th>
+            <th scope="col" style="width: 140px">
+              <button
+                type="button"
+                class="btn btn-xl btn-success new-interaction"
+              >
+                New
+              </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="tbody"></tbody>
+      </table>
+    </section>
+
+    <!--  -->
+    <!-- Footer -->
+    <footer
+      class="p-4 bg-dark text-white text-center position-relative mt-auto"
+    >
+      <div class="container">
+        <button
+          type="button"
+          id="cerrar-sesion"
+          class="btn btn-info position-absolute bottom-1 start-0 m-lg-1"
+        >
+          Cerrar sesión
+        </button>
+
+        <p class="lead">&copy; 2022 Proyecto CRM</p>
+
+        <a href="#" class="position-absolute bottom-0 end-0 p-4">
+          <i class="bi bi-arrow-up-circle h1"></i>
+        </a>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
